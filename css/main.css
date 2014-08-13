@@ -25,6 +25,11 @@ h1 {
 	margin: 0;
 }
 
+h1.last-word {
+	font: normal 35px/45px 'Droid Serif', Times, serif;
+	margin: 30px 0;
+}
+
 form {
 	background-color: #ADB0B2;
 	font: 100 18px/18px 'Open Sans', Helvetica, Arial, sans-serif;
@@ -38,6 +43,7 @@ ul {
 }
 .answers {
 	padding-bottom: 30px;
+	display: none;
 }
 
 .answers li {
@@ -45,7 +51,7 @@ ul {
 }
 
 #answerButton {
-	background-color: #606266;
+	background-color: #53BD84;
 	width: 330px;
 	font: bold 30px/47px 'Open Sans', Helvetica, Arial, sans-serif;
 	border: none;
@@ -79,17 +85,18 @@ input {
 }
 
 .question-list {
+	display: none;
 	position: absolute;
 	left: 430px;
 	top: 142px;
 	height: 200px;
-	width: 130px;
+	width: 70px;
 	color: #D1D3D4;
 	font: bold 30px/40px 'Open Sans', Arial, Helvetica, sans-serif;
 }
 
 .question-list li {
-	padding-right: 14px;
+	padding-right: 30px;
 	float: left;
 }
 
@@ -102,7 +109,7 @@ input {
 }
 
 #overlay {
-     visibility: hidden;
+     display: none;
      position: absolute;
      left: 0px;
      top: 0px;
@@ -128,6 +135,12 @@ input {
 
 #overlay div h2 {
 	font: bold 24px/30px 'Open Sans', Arial, Helvetica, sans-serif;
+	margin: 0;
+}
+
+#overlay div h3 {
+	font: bold 18px/24px 'Open Sans', Arial, Helvetica, sans-serif;
+	margin: 0;
 }
 
 #overlay div p {
