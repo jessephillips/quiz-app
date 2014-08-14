@@ -1,4 +1,4 @@
-var globalCount = -1;
+var globalCount = 0;
 var globalCorrect = 0;
 
 var q1 = new Question (1, "How could you select the second item in an unordered list (#mylist)?", ["#mylist:li(2)","#mylist:nth-child(2)","#mylist li:nth-child(2)","#mylist li.nth-child(2)"], "I learned this while making this quiz. It's counter-intuitive to me, but it's like saying \"find an li that's an nth-child(2)\".", "#mylist li:nth-child(2)");
@@ -25,7 +25,7 @@ $(document).ready(function(){
 
 	$('form').on('click', '#answerButton', function( e ){
 		e.preventDefault();
-		if(globalCount == -1) {
+		if(globalCount == 0) {
 			startQuiz();
 		} else {
 			resolveAnswer(questionList[globalCount]);
@@ -56,7 +56,6 @@ function startQuiz() {
 	}
 	qList.show();
 
-	globalCount++;
 	displayQuestion(questionList[globalCount]);
 }
 
@@ -121,7 +120,7 @@ function endGame () {
 	$('#answerButton').val("play again");
 	$('.answers').hide();
 	globalCorrect = 0;
-	globalCount = -1;
+	globalCount = 0;
 }
 
 function calculateLastWord() {
