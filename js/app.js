@@ -1,4 +1,4 @@
-var globalCount = 0;
+var globalCount = -1;
 var globalCorrect = 0;
 
 var q1 = new Question (1, "How could you select the second item in an unordered list (#mylist)?", ["#mylist:li(2)","#mylist:nth-child(2)","#mylist li:nth-child(2)","#mylist li.nth-child(2)"], "I learned this while making this quiz. It's counter-intuitive to me, but it's like saying \"find an li that's an nth-child(2)\".", "#mylist li:nth-child(2)");
@@ -11,8 +11,8 @@ var q7 = new Question (7, "Which type of positioning would you use to move an el
 var q8 = new Question (8, "What is the most valuable use for relative positioning?", ["removing an element from flow","making a flyout menu","as a containing box for absolutely positioned elements","as a containig box for fixed positioned elements"], "relative positioning is weird. It moves the element, but everything else flows around where it would've been. It seems most often used as a containing box for absolutely positioned elements.","as a containing box for absolutely positioned elements");
 var q9 = new Question (9, "Which background css will make a white background with a single image 30 px from the top and 20 pix from the left?", ["background: #fff url(\"img.gif\") 30px 20px no-repeat","background: #000 url(\"img.gif\") 30px 20px no-repeat","background: #fff url(\"img.gif\") 20px 30px no-repeat","background: #000 url(\"img.gif\") 20px 30px no-repeat"], "#fff is white & the first pixel value is the horizontal value, while the second pixel value is the vertical value.","background: #fff url(\"img.gif\") 20px 30px no-repeat");
 var q10 = new Question (10, "How do you get rid of the dots from a ul?", ["list-style: none","list-style-type: blank","margin: 0","list-style: unordered"], "list-style is a shorthand property for list-style-type & list-style-position. list-style-type: none\; and list-style: none\; will remove the default marker for a ul or ol.","list-style: none");
-var q11 = new Question (11, "Which of these html elements will make a textarea?", ["<input type=\"textarea\">some text</>","<text-input type=\"textarea\">some text</>","<textarea>some text</>","<div type=\"input\">some text</>"], "<textarea> is the correct form element. But text boxes are made like <input type=\"text\">, so it's kinda weird to me.", "<textarea>some text</>");
-var q12 = new Question (12, "How do you make a form element required in HTML5?", ["jQuery form validation","<input ... required>","<input ... required=\"true\">","input { required: true\;}"], "I guess this is sorta a trick question. Adding the \"required\" attribute to a form element will make it required. Using required=\"true\" is technically incorrect because required=\"false\" does not actually make it optional.","<input ... required>");
+var q11 = new Question (11, "Which of these html elements will make a textarea?", ["&lt;input type=\"textarea\"&gt;some text&lt;\/&gt;","&lt;text-input type=\"textarea\"&gt;some text&lt;\/&gt;","&lt;textarea&gt;some text&lt;\/&gt;","&lt;div type=\"input\"&gt;some text&lt;\/&gt;"], "<textarea> is the correct form element. But text boxes are made like <input type=\"text\">, so it's kinda weird to me.", "&lt;textarea&gt;some text&lt;\/&gt;");
+var q12 = new Question (12, "What's the best way to make a form element required in HTML5?", ["jQuery form validation","&lt;input ... required&gt;","&lt;input ... required=\"true\"&gt;","input { required: true\;}"], "I guess this is sorta a trick question. Adding the \"required\" attribute to a form element will make it required. Using required=\"true\" is technically incorrect because required=\"false\" does not actually make it optional.","&lt;input ... required&gt;");
 
 
 
@@ -25,7 +25,7 @@ $(document).ready(function(){
 
 	$('form').on('click', '#answerButton', function( e ){
 		e.preventDefault();
-		if(globalCount == 0) {
+		if(globalCount == -1) {
 			startQuiz();
 		} else {
 			resolveAnswer(questionList[globalCount]);
@@ -34,8 +34,8 @@ $(document).ready(function(){
 
 	$('#overlay').on('click', 'button', function ( e ) {
 		e.preventDefault();
-		globalCount++;
 		if (globalCount < questionList.length) {
+			globalCount++;
 			displayQuestion(questionList[globalCount]);
 		} else {
 			endGame();
@@ -56,6 +56,7 @@ function startQuiz() {
 	}
 	qList.show();
 
+	globalCount++;
 	displayQuestion(questionList[globalCount]);
 }
 
@@ -120,7 +121,7 @@ function endGame () {
 	$('#answerButton').val("play again");
 	$('.answers').hide();
 	globalCorrect = 0;
-	globalCount = 0;
+	globalCount = -1;
 }
 
 function calculateLastWord() {
